@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_table_product" author="dzinkin">
+        <createTable schemaName="app" tableName="products">
+            <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
+            <column name="product_name"             type="TEXT"             remarks="Наименование товара"/>
+            <column name="product_description"      type="VARCHAR(2000)"    remarks="Описание товара"/>
+            <column name="product_price"            type="DECIMAL"          remarks="Цена товара"/>
+            <column name="product_size"             type="TEXT"             remarks="Размер товара (ДЛИНАхШИРИНАхВЫСОТА)"/>
+            <column name="product_volume"           type="INT"              remarks="Обьем товара в литрах"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="create_table_order" author="dzinkin">
+        <createTable schemaName="app" tableName="order">
+            <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
+            <column name="products_id"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
+            <column name="arrival_date"             type="DATE"             remarks="Дата приезда"/>
+            <column name="phone_number_z"           type="TEXT"             remarks="Номер телефона заказчика"/>
+            <column name="fio_z"                    type="TEXT"             remarks="ФИО заказчика"/>
+            <column name="manager_name"             type="TEXT"             remarks="Имя менеджера курирующего заказ"/>
+            <column name="car_number_z"             type="TEXT"             remarks="Номер машины заказчика"/>
+            <column name="created_date"             type="TIMESTAMP"        remarks="Дата создания заказа"/>
+            <column name="formation_date"           type="TIMESTAMP"        remarks="Дата изменения заказа" defaultValue="now()"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_table_final_order" author="dzinkin">
+        <createTable schemaName="app" tableName="end_order">
+            <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
+            <column name="products_id"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
+            <column name="arrival_date"             type="DATE"             remarks="Дата приезда"/>
+            <column name="phone_number_z"           type="TEXT"             remarks="Номер телефона заказчика"/>
+            <column name="fio_z"                    type="TEXT"             remarks="ФИО заказчика"/>
+            <column name="manager_name"             type="TEXT"             remarks="Имя менеджера курирующего заказ"/>
+            <column name="car_number_z"             type="TEXT"             remarks="Номер машины заказчика"/>
+            <column name="created_date"             type="TIMESTAMP"        remarks="Дата создания заказа"/>
+            <column name="formation_date"           type="TIMESTAMP"        remarks="Дата изменения заказа"/>
+            <column name="end_date"                 type="TIMESTAMP"        remarks="Дата закрытия заказа" defaultValue="now()"/>
+            <column name="order_price"              type="DECIMAL"          remarks="Окончательная цена заказа товара"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
