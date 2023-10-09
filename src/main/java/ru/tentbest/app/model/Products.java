@@ -5,67 +5,24 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.lang.NonNull;
+import ru.tentbest.app.model.abstracts.AbstractProduct;
 
-@Data
-@NoArgsConstructor
 @ToString
 @Table(name = "products")
-public class Products {
-    @Id
-    private Long id;
-    @Column(value = "product_name")
-    private String productName;
-    @Column(value = "product_description")
-    private String productDescription;
-    @Column(value = "product_price")
-    private Long productPrice;
+public class Products extends AbstractProduct {
+
     @Column(value = "product_size")
     private String productSize;
     @Column(value = "product_volume")
     private Integer productVolume;
 
     public Products(Long id, String productName, String productDescription, Long productPrice, String productSize, Integer productVolume) {
-        this.id = id;
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
+        super(id, productName, productDescription, productPrice);
         this.productSize = productSize;
         this.productVolume = productVolume;
     }
 
-    public Products(String productName, String productDescription, Long productPrice, String productSize, Integer productVolume) {
-        this.productName = productName;
-        this.productDescription = productDescription;
-        this.productPrice = productPrice;
-        this.productSize = productSize;
-        this.productVolume = productVolume;
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public void setProductDescription(String productDescription) {
-        this.productDescription = productDescription;
-    }
-
-    public Long getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(Long productPrice) {
-        this.productPrice = productPrice;
+    public Products() {
     }
 
     public String getProductSize() {

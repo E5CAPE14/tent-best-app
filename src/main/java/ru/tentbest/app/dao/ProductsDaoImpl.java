@@ -1,17 +1,15 @@
 package ru.tentbest.app.dao;
 
-import io.r2dbc.spi.ConnectionFactories;
-import io.r2dbc.spi.ConnectionFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ru.tentbest.app.dao.abstracts.ProductsDao;
 import ru.tentbest.app.model.Products;
 @Repository
-public class ProductsDaoImpl implements ProductsDao{
+public class ProductsDaoImpl implements ProductsDao {
 
     @Autowired
     private DatabaseClient databaseClient;

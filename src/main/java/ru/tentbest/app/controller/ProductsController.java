@@ -5,22 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.tentbest.app.dao.ProductsDao;
+import ru.tentbest.app.dao.abstracts.ProductsDao;
 import ru.tentbest.app.model.Products;
 
-import java.security.Principal;
 import java.time.Duration;
-import java.time.temporal.TemporalUnit;
-import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
-public class Controller {
+public class ProductsController {
 
     @Autowired
     private ProductsDao productsDao;

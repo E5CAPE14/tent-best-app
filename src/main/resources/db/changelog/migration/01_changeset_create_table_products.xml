@@ -20,13 +20,13 @@
     <changeSet id="create_table_order" author="dzinkin">
         <createTable schemaName="app" tableName="order">
             <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
-            <column name="products_id"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
+            <column name="products_ids"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
             <column name="arrival_date"             type="DATE"             remarks="Дата приезда"/>
             <column name="phone_number_z"           type="TEXT"             remarks="Номер телефона заказчика"/>
             <column name="fio_z"                    type="TEXT"             remarks="ФИО заказчика"/>
             <column name="manager_name"             type="TEXT"             remarks="Имя менеджера курирующего заказ"/>
             <column name="car_number_z"             type="TEXT"             remarks="Номер машины заказчика"/>
-            <column name="created_date"             type="TIMESTAMP"        remarks="Дата создания заказа"/>
+            <column name="created_date"             type="TIMESTAMP"        remarks="Дата создания заказа" defaultValue="now()"/>
             <column name="formation_date"           type="TIMESTAMP"        remarks="Дата изменения заказа" defaultValue="now()"/>
         </createTable>
     </changeSet>
@@ -34,15 +34,15 @@
     <changeSet id="create_table_final_order" author="dzinkin">
         <createTable schemaName="app" tableName="end_order">
             <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
-            <column name="products_id"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
+            <column name="products_ids"              type="BIGINT[]"         remarks="Список id товаров в БД" defaultValue="{}"/>
             <column name="arrival_date"             type="DATE"             remarks="Дата приезда"/>
             <column name="phone_number_z"           type="TEXT"             remarks="Номер телефона заказчика"/>
             <column name="fio_z"                    type="TEXT"             remarks="ФИО заказчика"/>
             <column name="manager_name"             type="TEXT"             remarks="Имя менеджера курирующего заказ"/>
             <column name="car_number_z"             type="TEXT"             remarks="Номер машины заказчика"/>
             <column name="created_date"             type="TIMESTAMP"        remarks="Дата создания заказа"/>
-            <column name="formation_date"           type="TIMESTAMP"        remarks="Дата изменения заказа"/>
-            <column name="end_date"                 type="TIMESTAMP"        remarks="Дата закрытия заказа" defaultValue="now()"/>
+            <column name="formation_date"           type="TIMESTAMP"        remarks="Дата изменения заказа" defaultValue="now()"/>
+            <column name="end_date"                 type="TIMESTAMP"        remarks="Дата закрытия заказа"/>
             <column name="order_price"              type="DECIMAL"          remarks="Окончательная цена заказа товара"/>
         </createTable>
     </changeSet>

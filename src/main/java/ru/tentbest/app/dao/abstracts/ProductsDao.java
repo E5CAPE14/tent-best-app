@@ -1,4 +1,4 @@
-package ru.tentbest.app.dao;
+package ru.tentbest.app.dao.abstracts;
 
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
