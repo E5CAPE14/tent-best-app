@@ -5,7 +5,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
-import ru.tentbest.app.service.CalculationService;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -119,8 +118,5 @@ public class Orders {
 
     public void setFormationDate(Timestamp formation_date) {
         this.formation_date = formation_date;
-    }
-    private Double checkSum(CalculationService service){
-        return service.calc(product_ids);
     }
 }

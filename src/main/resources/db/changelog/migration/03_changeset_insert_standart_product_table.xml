@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="insert_data_standard_products" author="dzinkin">
+        <insert schemaName="app" tableName="products">
+            <column name="id"                      value="999214"    />
+            <column name="product_name"            value="chees"/>
+            <column name="product_description"     value="Сыр для мышки"/>
+            <column name="product_price"           value="9533"/>
+            <column name="product_size"            value="24x24x24"/>
+            <column name="product_volume"          value="null"/>
+        </insert>
+        <insert schemaName="app" tableName="products">
+            <column name="id"                      value="999234"    />
+            <column name="product_name"            value="cheer"/>
+            <column name="product_description"     value="test_data"/>
+            <column name="product_price"           value="9533"/>
+            <column name="product_size"            value="24x21x21"/>
+            <column name="product_volume"          value="null"/>
+        </insert>
+        <insert schemaName="app" tableName="products">
+            <column name="id"                      value="999244"    />
+            <column name="product_name"            value="cheeg"/>
+            <column name="product_description"     value="test_data_2"/>
+            <column name="product_price"           value="953133"/>
+            <column name="product_size"            value="24x24x24"/>
+            <column name="product_volume"          value="null"/>
+        </insert>
+        <insert schemaName="app" tableName="products">
+            <column name="id"                      value="299214"    />
+            <column name="product_name"            value="bucket"/>
+            <column name="product_description"     value="Сыр для мышки"/>
+            <column name="product_price"           value="9533"/>
+            <column name="product_size"            value="null"/>
+            <column name="product_volume"          value="5"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

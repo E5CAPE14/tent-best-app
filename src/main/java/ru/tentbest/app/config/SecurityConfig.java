@@ -56,7 +56,7 @@ public class SecurityConfig {
                 .authorizeExchange((authorize) -> authorize
                         .pathMatchers("/").authenticated()
                         .pathMatchers("/save").hasRole("MANAGER")
-                        .pathMatchers("/*").hasAnyRole("MANAGER","ROOT")
+                        .pathMatchers("/**").hasAnyRole("MANAGER","ROOT")
                         .anyExchange().denyAll()
                 )
                 .formLogin(withDefaults())

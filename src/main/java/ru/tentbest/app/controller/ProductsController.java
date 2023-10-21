@@ -6,11 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.tentbest.app.dao.abstracts.ProductsDao;
 import ru.tentbest.app.model.Products;
 
+import java.io.IOException;
 import java.time.Duration;
 
 @RestController
@@ -26,7 +29,7 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<?>> findById(@PathVariable("id") Integer value,@AuthenticationPrincipal Authentication authentication){
+    public Mono<ResponseEntity<?>> findById(@PathVariable("id") Long value,@AuthenticationPrincipal Authentication authentication){
         String name = authentication.getAuthorities().toString()
                 .replace("ROLE_","")
                 .replace("[","")

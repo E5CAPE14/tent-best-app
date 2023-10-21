@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.tentbest.app.dao.abstracts.OrdersDao;
+import ru.tentbest.app.model.EndOrder;
 import ru.tentbest.app.model.Orders;
 import ru.tentbest.app.model.Products;
 
@@ -58,7 +59,7 @@ public class OrdersDaoImpl implements OrdersDao {
 
     @Override
     public Flux<Orders> findAll() {
-        return databaseClient.sql("select id,products_id,arrival_date,phone_number_z,fio_z,manager_name,car_number_z from app.order group by id")
+        return databaseClient.sql("select id,products_ids,arrival_date,phone_number_z,fio_z,manager_name,car_number_z,created_date,formation_date from app.order group by id")
                 .map(row -> {
                     return new Orders(
                             row.get("products_ids",Long[].class),
@@ -75,11 +76,41 @@ public class OrdersDaoImpl implements OrdersDao {
 
     @Override
     public Mono<Void> deleteById(Long integer) {
-        return null;
+        StringBuilder sqlQuery = new StringBuilder(
+                "delete from app.orders as o where o.id = :id"
+        );
+        return databaseClient
+                .sql(sqlQuery.toString())
+                .bind("id",integer)
+                .then();
     }
 
     @Override
     public Mono<Void> delete(Orders entity) {
-        return null;
+        return deleteById(entity.getId());
+    }
+
+    @Override
+    public Mono<Orders> getOrderByNumberZ(String numberZ) {
+        StringBuilder sqlQuery = new StringBuilder(
+                "select id,products_ids,arrival_date,phone_number_z,fio_z,manager_name,car_number_z,created_date,formation_date " +
+                        " from app.orders as o where o.phone_number_z = ")
+                .append(numberZ)
+                .append("group by id,created_date");
+
+
+        return databaseClient.sql(sqlQuery.toString())
+                .map(row -> {
+                    return new Orders(
+                            row.get("products_ids",Long[].class),
+                            row.get("arrival_date", Date.class),
+                            row.get("phone_number_z",String.class),
+                            row.get("fio_z",String.class),
+                            row.get("manager_name",String.class),
+                            row.get("car_number_z",String.class),
+                            row.get("created_date", Timestamp.class),
+                            row.get("formation_date", Timestamp.class)
+                    );
+                }).one();
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_table_product" author="dzinkin">
+        <createTable schemaName="app" tableName="start_products_order">
+            <column name="id"                       type="BIGINT"           remarks="ID"       autoIncrement="true"    />
+            <column name="products_ids"             type="BIGINT[]"         remarks="IDs товаров "/>
+            <column name="order_price"              type="DECIMAL"          remarks="Цена товара"/>
+            <column name="orders_name"              type="TEXT"             remarks="Название стартового набора"/>
+        </createTable>
+        <rollback>
+            DROP TABLE start_products_order
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -7,4 +7,6 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
     <include file="migration/01_changeset_create_table_products.xml" relativeToChangelogFile="true" />
+    <include file="migration/02_changeset_create_table_standart_order.xml" relativeToChangelogFile="true" />
+    <include file="migration/03_changeset_insert_standart_product_table.xml" relativeToChangelogFile="true" />
 </databaseChangeLog>

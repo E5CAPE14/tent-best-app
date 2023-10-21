@@ -31,7 +31,7 @@ public class ProductsDaoImpl implements ProductsDao {
     }
 
     @Override
-    public Mono<Products> findById(Integer id) {
+    public Mono<Products> findById(Long id) {
         Mono<Products> productsMono = databaseClient
                 .sql("select id,product_name,product_price,product_description,product_size,product_volume from app.products as p where p.id = :id LIMIT 2")
                 .bind("id",id)
@@ -48,7 +48,7 @@ public class ProductsDaoImpl implements ProductsDao {
     }
 
     @Override
-    public Mono<Boolean> existsById(Integer integer) {
+    public Mono<Boolean> existsById(Long id) {
         return null;
     }
 
@@ -68,12 +68,18 @@ public class ProductsDaoImpl implements ProductsDao {
     }
 
     @Override
-    public Mono<Void> deleteById(Integer integer) {
-        return null;
+    public Mono<Void> deleteById(Long integer) {
+        StringBuilder sqlQuery = new StringBuilder(
+                "delete from app.products as o where o.id = :id"
+        );
+        return databaseClient
+                .sql(sqlQuery.toString())
+                .bind("id",integer)
+                .then();
     }
 
     @Override
     public Mono<Void> delete(Products entity) {
-        return null;
+        return deleteById(entity.getId());
     }
 }

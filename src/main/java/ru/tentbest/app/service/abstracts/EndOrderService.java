@@ -1,10 +1,11 @@
-package ru.tentbest.app.dao.abstracts;
+package ru.tentbest.app.service.abstracts;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.tentbest.app.model.EndOrder;
+import ru.tentbest.app.model.Orders;
 
-public interface EndOrdersDao {
+public interface EndOrderService {
 
     Mono<Void> save(EndOrder entity);
     Mono<EndOrder> findById(Long integer);
@@ -12,6 +13,5 @@ public interface EndOrdersDao {
     Flux<EndOrder> findAll();
     Mono<Void> deleteById(Long integer);
     Mono<Void> delete(EndOrder entity);
-    Flux<EndOrder> getEndOrdersByManagerName(String... managerName);
-    Mono<EndOrder> getEndOrderByNumberZ(String numberZ);
+
 }

@@ -7,9 +7,9 @@ import ru.tentbest.app.model.Products;
 
 public interface ProductsDao{
     Mono<Void> save(Products entity);
-    Mono<Products> findById(Integer integer);
-    Mono<Boolean> existsById(Integer integer);
+    Mono<Products> findById(Long integer);
+    Mono<Boolean> existsById(Long integer);
     Flux<Products> findAll();
-    Mono<Void> deleteById(Integer integer);
+    Mono<Void> deleteById(Long integer);
     Mono<Void> delete(Products entity);
 }
